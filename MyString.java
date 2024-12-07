@@ -12,6 +12,7 @@ public class MyString {
         //System.out.println(countChar(hello, 'l'));
         //System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString("hellweweweo"));
+        System.out.println(spacedString("silent"));
         System.out.println(randomStringOfLetters(10));
         //System.out.println(subsetOf("hell", hello));
         System.out.println(remove("meete","committeeee"));
