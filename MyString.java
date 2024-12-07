@@ -1,14 +1,23 @@
+import java.io.Console;
+
+import javax.print.DocFlavor.STRING;
+
 /**
  * A library of string functions.
  */
 public class MyString {
     public static void main(String args[]) {
         String hello = "hello";
-        System.out.println(countChar(hello, 'h'));
-        System.out.println(countChar(hello, 'l'));
-        System.out.println(countChar(hello, 'z'));
-        System.out.println(spacedString(hello));
-        //// Put your other tests here.
+       // System.out.println(countChar(hello, 'h'));
+        //System.out.println(countChar(hello, 'l'));
+        //System.out.println(countChar(hello, 'z'));
+        //System.out.println(spacedString("hellweweweo"));
+        System.out.println(randomStringOfLetters(10));
+        //System.out.println(subsetOf("hell", hello));
+        System.out.println(remove("meete","committeeee"));
+        System.out.println(removeDoubleChars("hellooooohhhhhheewwwweeeelllhh"));
+        System.out.println(insertRandomly('c', hello));
+       
     }
 
     /**
@@ -20,14 +29,18 @@ public class MyString {
      * @return the number of times c appears in str
      */
     public static int countChar(String str, char ch) {
-        //// Replace the following statement with your code
-        return 0;
+        int count =0;
+        for(int i=0;i<str.length();i++)
+        {
+           if(str.charAt(i)==ch) count ++; 
+        }
+        return count;
     }
 
     /** Returns true if str1 is a subset string str2, false otherwise
      *  Examples:
      *  subsetOf("sap","space") returns true
-     *  subsetOf("spa","space") returns true
+     *  subsetOf("spa","space") returns false
      *  subsetOf("pass","space") returns false
      *  subsetOf("c","space") returns true
      *
@@ -35,9 +48,13 @@ public class MyString {
      * @param str2 - a string
      * @return true is str1 is a subset of str2, false otherwise
      */
-    public static boolean subsetOf(String str1, String str2) {
-         //// Replace the following statement with your code
-        return false;
+    public static boolean subsetOf(String str1, String str2)
+    {
+        for(int i=0;i<str1.length();i++)
+        {
+            if(countChar(str1,str2.charAt(i))==0) return false; 
+        }
+        return true;
     }
 
     /** Returns a string which is the same as the given string, with a space
@@ -49,8 +66,13 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
-        //// Replace the following statement with your code
-        return null;
+        String newS="";
+        for(int i=0;i<str.length()-1;i++)
+        {
+            newS+= str.charAt(i)+ " ";
+        }
+        newS+=str.charAt(str.length()-1);
+        return newS;
     }
   
     /**
@@ -64,8 +86,13 @@ public class MyString {
      * @return a randomly generated string, consisting of 'n' lowercase letters
      */
     public static String randomStringOfLetters(int n) {
-        //// Replace the following statement with your code
-        return null;
+        char[] c1 = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+        String newS="";
+        for(int i=0;i<n;i++)
+        {
+            newS+=c1[(int)(Math.random()*c1.length)];
+        } 
+        return newS;
     }
 
     /**
@@ -78,8 +105,36 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-       //// Replace the following statement with your code
-        return null;
+        String newShort=removeDoubleChars(str1);
+        String newS="";
+        int[] indOfS =new int[newShort.length()];
+        for(int i=0;i<newShort.length();i++)
+        {
+            indOfS[i]+=countChar(str1, newShort.charAt(i));
+        }
+        for(int j=0;j<str2.length();j++)
+        {
+            if(newShort.indexOf(str2.charAt(j))==-1) newS+=str2.charAt(j);
+            else
+            {
+                if(indOfS[newShort.indexOf(str2.charAt(j))]==0) newS+=str2.charAt(j);
+                else indOfS[newShort.indexOf(str2.charAt(j))]--;
+            }
+        }
+
+        
+        return newS;
+    }
+    //Recieves a string and removes all duplicates of the same char(Im using it in the remove function)
+    // example the string "meet" it returns "met"
+    public static String removeDoubleChars(String s1)
+    {
+        String s= "";
+        for(int i=0;i<s1.length();i++)
+        {
+            if(s.indexOf(s1.charAt(i))==-1) s+=s1.charAt(i);
+        }
+        return s;
     }
 
     /**
