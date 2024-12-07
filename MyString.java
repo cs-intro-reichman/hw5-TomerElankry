@@ -50,6 +50,10 @@ public class MyString {
      */
     public static boolean subsetOf(String str1, String str2)
     {
+        if(str1.length()==1 && str2.indexOf(str1.charAt(0))!=-1)
+        {
+            return true;
+        }
         for(int i=0;i<str1.length();i++)
         {
             if(countChar(str1,str2.charAt(i))==0) return false; 
@@ -69,10 +73,11 @@ public class MyString {
         String newS="";
         for(int i=0;i<str.length()-1;i++)
         {
-            newS+= str.charAt(i)+ " ";
+            newS+=str.charAt(i)+ " ";
         }
-        newS+=str.charAt(str.length()-1);
-        return newS;
+        if(str.length()!=0) newS+=str.charAt(str.length()-1);
+        String newSS=" "+newS;
+        return newSS;
     }
   
     /**
@@ -105,20 +110,20 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-        String newShort=removeDoubleChars(str1);
+        String newShort=removeDoubleChars(str2);
         String newS="";
         int[] indOfS =new int[newShort.length()];
         for(int i=0;i<newShort.length();i++)
         {
-            indOfS[i]+=countChar(str1, newShort.charAt(i));
+            indOfS[i]+=countChar(str2, newShort.charAt(i));
         }
-        for(int j=0;j<str2.length();j++)
+        for(int j=0;j<str1.length();j++)
         {
-            if(newShort.indexOf(str2.charAt(j))==-1) newS+=str2.charAt(j);
+            if(newShort.indexOf(str1.charAt(j))==-1) newS+=str1.charAt(j);
             else
             {
-                if(indOfS[newShort.indexOf(str2.charAt(j))]==0) newS+=str2.charAt(j);
-                else indOfS[newShort.indexOf(str2.charAt(j))]--;
+                if(indOfS[newShort.indexOf(str1.charAt(j))]==0) newS+=str1.charAt(j);
+                else indOfS[newShort.indexOf(str1.charAt(j))]--;
             }
         }
 
