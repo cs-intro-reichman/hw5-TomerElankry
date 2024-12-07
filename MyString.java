@@ -70,14 +70,14 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
-        String newS="";
+        String newS=" ";
+        if(str.length()==0) return newS;
         for(int i=0;i<str.length()-1;i++)
         {
             newS+=str.charAt(i)+ " ";
         }
-        if(str.length()!=0) newS+=str.charAt(str.length()-1);
-        String newSS=" "+newS;
-        return newSS;
+        newS+=str.charAt(str.length()-1);
+        return newS;
     }
   
     /**
