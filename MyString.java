@@ -70,15 +70,22 @@ public class MyString {
      * @param str - a string
      * @return a string consisting of the characters of str, separated by spaces.
      */
-    public static String spacedString(String str) {
-        String newS=" ";
-        if(str.length()==0) return newS;
-        for(int i=0;i<str.length()-1;i++)
+    public static String spacedString(String str)
+    {
+        if (str != null) 
         {
-            newS+=str.charAt(i)+ " ";
+            String result = "";
+            for (int i = 0; i < str.length(); i++) 
+            {
+                result += str.charAt(i);
+                if (i < str.length() - 1)
+                {
+                    result += ' ';
+                }
+            }
+            return result;
         }
-        newS+=str.charAt(str.length()-1);
-        return newS;
+        return str;
     }
   
     /**
